@@ -1,0 +1,36 @@
+<script src="/plugins/Reisishot-Visual-Editor/ckeditor/ckeditor.js"></script>
+<script>
+    window.onload = function () {
+        console.log("Should start editor...")
+        var textareas = document.getElementsByTagName('textarea');
+
+        for (i = 0; i < textareas.length; i++) {
+            var cur = textareas[i];
+            var editor;
+            var btn = document.createElement("button");
+
+            function create(e) {
+                if (e)
+                    e.preventDefault();
+                editor = CKEDITOR.replace(cur);
+                btn.innerText = "Temporarly close visual editor";
+                btn.onclick = destroy;
+            }
+
+            function destroy(e) {
+                if (e)
+                    e.preventDefault();
+                editor.destroy();
+                btn.innerText = "Open visual editor again";
+                btn.onclick = create;
+            }
+            var next = cur.nextSibling;
+            if (next === undefined)
+                next = null;
+
+            create();
+
+            cur.parentNode.insertBefore(btn, cur);
+        }
+    };
+</script>
