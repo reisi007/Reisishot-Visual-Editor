@@ -5,9 +5,9 @@
         var textareas = document.getElementsByTagName('textarea');
 
         for (i = 0; i < textareas.length; i++) {
-            var cur = textareas[i];
-            var editor;
-            var btn = document.createElement("button");
+            let cur = textareas[i];
+            let editor;
+            let btn = document.createElement("button");
 
             function create(e) {
                 if (e)
@@ -25,7 +25,7 @@
                 btn.innerText = "Open visual editor";
                 btn.onclick = create;
             }
-            var next = cur.nextSibling;
+            let next = cur.nextSibling;
             if (next === undefined)
                 next = null;
 
