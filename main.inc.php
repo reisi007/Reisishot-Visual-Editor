@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Reisishot Visual Editor
-Version: 0.1
+Version: 1.0.3
 Description: WYSIWYG editor.
-Plugin URI: 
+Plugin URI: http://piwigo.org/ext/extension_view.php?eid=884
 Author: Reisishot
 Author URI: https://reisishot.pictures
 */

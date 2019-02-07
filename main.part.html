@@ -1,37 +1,3 @@
 <script src="/plugins/Reisishot-Visual-Editor/ckeditor/ckeditor.js"></script>
-<script>
-    window.onload = function () {
-        console.log("Should start editor...")
-        var textareas = document.getElementsByTagName('textarea');
-
-        for (i = 0; i < textareas.length; i++) {
-            let cur = textareas[i];
-            let editor;
-            let btn = document.createElement("button");
-
-            function create(e) {
-                if (e)
-                    e.preventDefault();
-                editor = CKEDITOR.replace(cur);
-                btn.innerText = "Close visual editor";
-                btn.onclick = destroy;
-            }
-
-            function destroy(e) {
-                if (e)
-                    e.preventDefault();
-                if (editor)
-                    editor.destroy();
-                btn.innerText = "Open visual editor";
-                btn.onclick = create;
-            }
-            let next = cur.nextSibling;
-            if (next === undefined)
-                next = null;
-
-            destroy();
-
-            cur.parentNode.insertBefore(btn, cur);
-        }
-    };
-</script>
+<script src="/plugins/Reisishot-Visual-Editor/cookie.min.js"></script>
+<script src="/plugins/Reisishot-Visual-Editor/businesslogic.min.js"></script>
