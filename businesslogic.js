@@ -1,5 +1,8 @@
 window.onload = function () {
     const COOKIE_EXPIRE_DATE = 2000000000;
+	const allowedContent = 'h1 h2 h3 p blockquote strong em;' +
+    'a[href,data-*];script[src!,async,defer,type];' +
+    'img(left,right)[!src,alt,width,height];';
     // https://stackoverflow.com/questions/3620116/get-css-path-from-dom-element/12222317#12222317
     var cssPath = function (el) {
         if (!(el instanceof Element))
@@ -25,8 +28,7 @@ window.onload = function () {
         }
         return path.join(" > ");
     }
-
-    console.log("Should start editor...")
+	
     var textareas = document.getElementsByTagName('textarea');
 
     for (i = 0; i < textareas.length; i++) {
@@ -38,7 +40,9 @@ window.onload = function () {
         function create(e) {
             if (e)
                 e.preventDefault();
-            editor = CKEDITOR.replace(cur);
+            editor = CKEDITOR.replace(cur,{
+			allowedContent:allowedContent
+			});
             btn.innerText = "Close visual editor";
             btn.onclick = destroy;
             Cookies.set(textboxId, 'enabled', { path: '', expires: COOKIE_EXPIRE_DATE })
@@ -51,18 +55,14 @@ window.onload = function () {
                 editor.destroy();
             btn.innerText = "Open visual editor";
             btn.onclick = create;
-            //  Cookies.remove(text)
             Cookies.set(textboxId, 'disabled', { path: '', expires: COOKIE_EXPIRE_DATE })
         }
 
         let curCookieVal = Cookies.get(textboxId, { path: '' });
-        console.log("Cur cookie val", curCookieVal);
-
         if (curCookieVal == 'enabled')
             create();
         else
             destroy()
-
 
         var next = cur.nextSibling;
         if (next === undefined)
